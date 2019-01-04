@@ -19,7 +19,7 @@ except ImportError:
 
 
 def init_subscription():
-    CF.Key.set(config.KEY)
+    CF.Key.set(config.FACE_API_KEY)
     CF.BaseUrl.set(config.BASE_URL)
 
 

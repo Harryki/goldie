@@ -33,16 +33,13 @@ class App:
             if added:
                 print("Added: ", ", ".join(added))
 
-                # faces = App.detect(App, "images/test_material/jack/jack2.jpg")
                 faces = App.detect(App, os.path.join(path_to_watch, added[0]))
-                subscription_key = "2c14b0315f804a17a54fae4be07dd2a3"
 
                 if faces:
                     for face in faces:
                         person = App.identify(App, face["faceId"], config.GROUP_ID)
-                        # subscription_key = "2c14b0315f804a17a54fae4be07dd2a3"
                         app = TextToSpeech(
-                            subscription_key,
+                            config.SPEACH_API_KEY,
                             ("Hi, " + person["name"] + ". How are you?"),
                         )
                         app.get_token()
@@ -50,7 +47,7 @@ class App:
                         app.play_audio()
                 else:
                     app = TextToSpeech(
-                        subscription_key, ("Take another photo, you idiot")
+                        config.SPEACH_API_KEY , ("Take another photo, you idiot")
                     )
                     app.get_token()
                     app.save_audio()
